@@ -1,0 +1,46 @@
+{
+  "name": "zipextractor",
+  "version": "1.0.0",
+  "description": "Native macOS drop-to-extract app for rar and 7z.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --mac",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "build": {
+    "appId": "com.sayan.zipextractor",
+    "asarUnpack": [
+      "node_modules/7zip-bin-full/**/*"
+    ],
+    "mac": {
+      "target": "dir",
+      "fileAssociations": [
+        {
+          "ext": "rar",
+          "name": "RAR Archive",
+          "role": "Viewer"
+        },
+        {
+          "ext": "7z",
+          "name": "7-Zip Archive",
+          "role": "Viewer"
+        }
+      ]
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "7zip-bin": "^5.2.0",
+    "7zip-bin-full": "^26.0.1",
+    "jimp": "^0.16.13",
+    "node-7z": "^3.0.0"
+  },
+  "devDependencies": {
+    "electron": "^41.1.0",
+    "electron-builder": "^26.8.1"
+  }
+}

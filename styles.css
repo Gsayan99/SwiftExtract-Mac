@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg-color: transparent;
+  --text-color: #ffffff;
+  --accent-color: #0A84FF;
+  --drop-zone-bg: rgba(255, 255, 255, 0.05);
+  --drop-zone-border: rgba(255, 255, 255, 0.1);
+  --drop-zone-hover: rgba(255, 255, 255, 0.1);
+  --success-color: #34C759;
+  --error-color: #FF453A;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text-color: #1c1c1e;
+    --drop-zone-bg: rgba(0, 0, 0, 0.03);
+    --drop-zone-border: rgba(0, 0, 0, 0.1);
+    --drop-zone-hover: rgba(0, 0, 0, 0.08);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.drag-bar {
+  display: none;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  justify-content: center;
+  gap: 16px;
+}
+
+.drop-zone {
+  flex: 1;
+  border: 2px dashed var(--drop-zone-border);
+  border-radius: 16px;
+  background: var(--drop-zone-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  -webkit-app-region: no-drag;
+}
+
+.drop-zone.drag-active {
+  border-color: var(--accent-color);
+  background: var(--drop-zone-hover);
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(10, 132, 255, 0.15);
+}
+
+.drop-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.cloud-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--text-color);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.drop-zone.drag-active .cloud-icon {
+  opacity: 1;
+  color: var(--accent-color);
+}
+
+.drop-content p {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.progress-container {
+  background: var(--drop-zone-bg);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.progress-container.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.progress-bar-bg {
+  height: 6px;
+  background: var(--drop-zone-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #0A84FF, #5E5CE6);
+  width: 0%;
+  border-radius: 3px;
+  transition: width 0.1s ease;
+}
+
+.status-message {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.status-message.hidden {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+}
+
+.status-message.success {
+  background: rgba(52, 199, 89, 0.1);
+  color: var(--success-color);
+}
+
+.status-message.error {
+  background: rgba(255, 69, 58, 0.1);
+  color: var(--error-color);
+}

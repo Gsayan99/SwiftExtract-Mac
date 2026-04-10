@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZipExtractor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="drag-bar"></div>
+  <div class="container">
+    <div id="drop-zone" class="drop-zone">
+      <div class="drop-content">
+        <svg xmlns="http://www.w3.org/2000/svg" class="cloud-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+        <p>Drop your .rar or .7z files here</p>
+      </div>
+    </div>
+    
+    <div id="progress-container" class="progress-container hidden">
+      <div class="progress-info">
+        <span id="progress-text">Extracting...</span>
+        <span id="progress-percent">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+    </div>
+    <div id="status-message" class="status-message hidden"></div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>
